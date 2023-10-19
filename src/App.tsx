@@ -1,7 +1,17 @@
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import PageNotFound from './pages/PageNotFound';
+
 function App() {
   return (
-    <div className='bg-blue-500 text-white p-4'>
-      <h1 className='text-2xl'>Hello World</h1>
+    <div>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
