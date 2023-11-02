@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/icons/keys-svgrepo-com.svg';
 import * as storage from '../../storage/index';
 
-function Header() {
+interface HeaderProps {
+  profileId?: string;
+}
+
+function Header({ profileId }: HeaderProps) {
   const accessToken = storage.load('accessToken');
   const user = storage.load('user');
 
@@ -27,7 +31,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to='/profile' className='text-white hover:text-white'>
+            <Link to={`/profile/${profileId || ''}`} className='text-white hover:text-white'>
               Profile
             </Link>
           </li>
