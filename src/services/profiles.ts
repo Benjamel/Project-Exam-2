@@ -4,13 +4,17 @@ import { authFetch } from './headers';
 
 const action: string = '?_bookings=true&_venues=true';
 
-async function fetchProfileById(profileId: string): Promise<Owner> {
+async function fetchProfileById(profileId: string, accessToken: string): Promise<Owner> {
   if (!profileId || typeof profileId !== 'string') {
     throw new Error('Invalid profile ID');
   }
 
   try {
-    const response = await authFetch(`${BASE_URL}profiles/${profileId}${action}`);
+    const response = await authFetch(`${BASE_URL}profiles/${profileId}${action}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     if (!response.ok) {
       if (response.status === 404) {

@@ -20,7 +20,7 @@ export interface Owner {
   avatar: string;
 }
 
-export default interface Location {
+export interface Location {
   address: string;
   city: string;
   zip: string;

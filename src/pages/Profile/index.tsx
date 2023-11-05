@@ -8,15 +8,15 @@ function Profile() {
   const { profileId } = useParams<{ profileId: string }>();
   const [profile, setProfile] = useState<Owner | null>(null);
   const accessToken = storage.load('accessToken');
-  console.log('Profile ID:', profileId);
 
   useEffect(() => {
-    console.log('Profile useEffect triggered');
+    console.log('Profile useEffect triggered. profileId:', profileId);
     if (!profileId) {
       return;
     }
 
     if (profileId && typeof accessToken === 'string') {
+      console.log('Making API call...');
       fetchProfileById(profileId, accessToken)
         .then((data) => {
           console.log('Fetched profile data:', data);
@@ -35,11 +35,10 @@ function Profile() {
 
   return (
     <div>
-      <h1>Profile</h1>
       <p>Name: {profile.name}</p>
       <p>Email: {profile.email}</p>
       <p>
-        Avatar: <img src={profile.avatar} alt={profile.name} />
+        Avatar: <img src={profile.avatar} alt={profile?.name} />
       </p>
     </div>
   );

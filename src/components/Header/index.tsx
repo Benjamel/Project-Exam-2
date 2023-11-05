@@ -2,18 +2,26 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/icons/keys-svgrepo-com.svg';
 import * as storage from '../../storage/index';
 
+interface User {
+  name: string;
+}
+
 interface HeaderProps {
   profileId?: string;
 }
 
 function Header({ profileId }: HeaderProps) {
-  const accessToken = storage.load('accessToken');
-  const user = storage.load('user');
+  const accessToken = storage.load('accessToken') as string | null;
+  const user = storage.load('user') as User | null;
 
   const handleLogout = () => {
     storage.remove('accessToken');
     storage.remove('user');
   };
+
+  console.log('Profile ID (Header):', profileId);
+  console.log('User:', user);
+  console.log('AccessToken:', accessToken);
 
   return (
     <nav className='w-full fixed top-0 p-3 z-10 bg-242424'>
@@ -31,9 +39,11 @@ function Header({ profileId }: HeaderProps) {
             </Link>
           </li>
           <li>
-            <Link to={`/profile/${profileId || ''}`} className='text-white hover:text-white'>
-              Profile
-            </Link>
+            {accessToken && user && (
+              <Link to={`/profile/${user?.name}`} className='text-white hover:text-white'>
+                Profile
+              </Link>
+            )}
           </li>
           {accessToken && user ? (
             <li>
