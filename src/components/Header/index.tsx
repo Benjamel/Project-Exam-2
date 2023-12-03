@@ -2,18 +2,23 @@ import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/icons/keys-svgrepo-com.svg';
 import * as storage from '../../storage/index';
 
+interface HeaderProps {
+  profileTo?: string;
+}
+
 interface User {
   name: string;
 }
 
-function Header() {
+function Header({ profileTo }: HeaderProps) {
   const accessToken = storage.load('accessToken') as string | null;
-  const user = storage.load('user') as User | null;
 
   const handleLogout = () => {
     storage.remove('accessToken');
     storage.remove('user');
   };
+
+  const user = storage.load('user') as User | null;
 
   return (
     <nav className='w-full fixed top-0 p-3 z-10 bg-242424'>
@@ -32,7 +37,9 @@ function Header() {
           </li>
           <li>
             {accessToken && user && (
-              <NavLink to={`/profile/${user?.name}`} className='text-white hover:text-white'>
+              <NavLink
+                to={profileTo ?? `/profile/${user.name}`}
+                className='text-white hover:text-white'>
                 Profile
               </NavLink>
             )}

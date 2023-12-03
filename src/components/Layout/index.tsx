@@ -1,17 +1,11 @@
 import Header from '../Header';
 import Footer from '../Footer';
-import { Outlet, useParams } from 'react-router-dom';
-
-function useProfileId() {
-  return useParams<{ profileId: string }>().profileId;
-}
+import { Outlet } from 'react-router-dom';
 
 function Layout() {
-  const profileId = useProfileId();
-
   return (
     <div>
-      <Header profileId={profileId} />
+      <Header />
       <Outlet />
       <Footer />
     </div>
