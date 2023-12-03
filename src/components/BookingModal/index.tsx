@@ -61,35 +61,41 @@ const BookingForm: React.FC<BookingFormProps> = ({
 
   return (
     <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
-      <form onSubmit={handleBookingSubmit}>
-        <label>
-          Date From:
-          <DatePicker
-            selected={bookingData.dateFrom}
-            onChange={(date) => handleDateChange(date as Date, 'dateFrom')}
-            dateFormat='MMMM d, yyyy'
-          />
-        </label>
+      <form className='p-5' onSubmit={handleBookingSubmit}>
+        <div className='mt-2'>
+          <label>
+            Date From:
+            <DatePicker
+              selected={bookingData.dateFrom}
+              onChange={(date) => handleDateChange(date as Date, 'dateFrom')}
+              dateFormat='MMMM d, yyyy'
+            />
+          </label>
+        </div>
         <br />
-        <label>
-          Date To:
-          <DatePicker
-            selected={bookingData.dateTo}
-            onChange={(date) => handleDateChange(date as Date, 'dateTo')}
-            dateFormat='MMMM d, yyyy'
-          />
-        </label>
+        <div className='mt-2'>
+          <label>
+            Date To:
+            <DatePicker
+              selected={bookingData.dateTo}
+              onChange={(date) => handleDateChange(date as Date, 'dateTo')}
+              dateFormat='MMMM d, yyyy'
+            />
+          </label>
+        </div>
         <br />
-        <label>
-          Guests:
-          <select name='guests' value={bookingData.guests} onChange={handleInputChange}>
-            {Array.from({ length: 10 }, (_, index) => (
-              <option key={index + 1} value={index + 1}>
-                {index + 1}
-              </option>
-            ))}
-          </select>
-        </label>
+        <div className='mt-2'>
+          <label>
+            Guests:
+            <select name='guests' value={bookingData.guests} onChange={handleInputChange}>
+              {Array.from({ length: 10 }, (_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <br />
         <button type='submit'>Book Now</button>
       </form>

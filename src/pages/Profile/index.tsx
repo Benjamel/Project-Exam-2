@@ -156,7 +156,7 @@ function Profile() {
                     onChange={(e) => setNewAvatarUrl(e.target.value)}
                     className='pl-1'
                   />
-                  <div>
+                  <div className='mt-2'>
                     <button onClick={handleAvatarChange}>Update</button>
                   </div>
                 </CustomModal>
