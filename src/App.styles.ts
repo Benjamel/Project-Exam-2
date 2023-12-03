@@ -27,13 +27,13 @@ export const ReusableStyles = styled.div`
   }
 `;
 
-export const ProductCard = styled(ReusableStyles)`
+//Home page
+export const venueCard = styled(ReusableStyles)`
   a {
     text-decoration: none;
     color: #fff;
     margin-bottom: 15px;
     padding: 5px;
-    border: 0.05px solid #fff;
     :hover {
       box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
     }
@@ -45,5 +45,47 @@ export const ProductCard = styled(ReusableStyles)`
 
   img {
     width: 350px;
+  }
+`;
+
+//Product ID page
+export const singleVenue = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .available {
+  }
+
+  .booked {
+    background-color: red;
+    color: white;
+
+    :hover {
+      background-color: white;
+      color: black;
+    }
+  }
+
+  .custom-tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      height: 400px;
+      width: 100%;
+      margin-bottom: 0;
+    }
   }
 `;
