@@ -33,7 +33,7 @@ function Home() {
   return (
     <div>
       <div className='text-center'>
-        <h1 className='text-center mt-4'>Venues</h1>
+        <h1 className='text-center mt-5'>Venues</h1>
         <Search searchQuery={searchQuery} onSearch={setSearchQuery} />
       </div>
       <S.venueCard>
