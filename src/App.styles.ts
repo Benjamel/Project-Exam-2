@@ -84,7 +84,8 @@ export const singleVenue = styled.div`
   .venue {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    justify-content: left;
     max-width: 600px;
   }
 
