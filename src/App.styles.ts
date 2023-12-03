@@ -81,11 +81,112 @@ export const singleVenue = styled.div`
     align-items: center;
   }
 
+  .venue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+  }
+
+  .venue-image {
+    max-width: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .venue-details {
+    padding: 10px;
+  }
+
+  .venue-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .venue-details p {
+    margin-bottom: 10px;
+  }
+
+  .venue-details button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .owner {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .owner-avatar {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .owner-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+
+  .owner h2 {
+    font-size: 20px;
+  }
+
+  .owner p {
+    margin: 0;
+  }
+
+  .info {
+    margin-bottom: 20px;
+  }
+
+  .info h2,
+  .location h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .info-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 350px;
+  }
+
+  .info,
+  .location {
+    flex: 1;
+    margin: 0px;
+  }
+
   @media (min-width: 768px) {
-    img {
-      height: 400px;
+    .info-location-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .info,
+    .location {
       width: 100%;
-      margin-bottom: 0;
+      margin: 10px 0;
+    }
+
+    .venue {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .venue-details {
+      max-width: none;
+      width: 100%;
+      text-align: center;
     }
   }
 `;
