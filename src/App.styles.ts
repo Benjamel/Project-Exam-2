@@ -62,9 +62,6 @@ export const singleVenue = styled.div`
     object-fit: cover;
   }
 
-  .available {
-  }
-
   .booked {
     background-color: red;
     color: white;
@@ -312,7 +309,6 @@ export const registerForm = styled.div`
 `;
 
 //Profile Page
-
 export const profilePage = styled.div`
   .profile {
     display: flex;

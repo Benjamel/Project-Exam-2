@@ -28,13 +28,10 @@ const VenueManagerToggle: React.FC<VenueManagerToggleProps> = ({ profileId, acce
 
         if (!response.ok) {
           if (response.status === 401) {
-            // Handle unauthorized access (e.g., redirect to login page)
             console.error('Unauthorized access. Redirecting to login page.');
-            // Perform redirect logic here
             return;
           }
 
-          // Handle other non-OK responses
           console.error('Error fetching venue manager status. Status:', response.status);
           return;
         }
