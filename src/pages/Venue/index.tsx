@@ -5,7 +5,6 @@ import BookingForm from '../../components/BookingModal';
 import Venue, { Booking } from '../../types';
 import * as S from '../../App.styles';
 import BookingCalendar from '../../components/BookingCalendar';
-import * as storage from '../../storage/index';
 
 const mapVenueToBooking = (venue: Venue): Booking[] => {
   return venue.bookings.map((booking) => ({
