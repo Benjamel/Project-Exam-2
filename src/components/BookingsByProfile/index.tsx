@@ -31,8 +31,8 @@ const UpcomingBookings: React.FC<UpcomingBookingsProps> = ({ profileName, access
   }
 
   return (
-    <div className='mt-5'>
-      <h2>Upcoming Bookings</h2>
+    <div className='mt-5 max-w-lg mx-auto'>
+      <h2 className='mb-3'>Upcoming Bookings</h2>
       {bookings.map((booking, index) => (
         <div key={index} className='booking-item'>
           <p>

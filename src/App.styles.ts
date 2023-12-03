@@ -123,10 +123,11 @@ export const singleVenue = styled.div`
   }
 
   .owner-avatar {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
+    margin-right: 10px;
   }
 
   .owner-details {
@@ -306,5 +307,35 @@ export const registerForm = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+  }
+`;
+
+//Profile Page
+
+export const profilePage = styled.div`
+  .profile {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 50px 0;
+  }
+
+  .profile-info {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+  }
+
+  .profile img {
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
   }
 `;

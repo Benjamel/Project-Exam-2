@@ -56,7 +56,7 @@ const BookingCalendar: React.FC<BookingCalendarProps> = ({ bookings }) => {
 
   return (
     <div className='calendar'>
-      <h2>Availability Calendar</h2>
+      <p>Availability Calendar</p>
       <Calendar
         className='text-black'
         tileClassName={getTileClassName}

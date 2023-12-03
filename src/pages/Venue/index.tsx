@@ -5,6 +5,7 @@ import BookingForm from '../../components/BookingModal';
 import Venue, { Booking } from '../../types';
 import * as S from '../../App.styles';
 import BookingCalendar from '../../components/BookingCalendar';
+import * as storage from '../../storage/index';
 
 const mapVenueToBooking = (venue: Venue): Booking[] => {
   return venue.bookings.map((booking) => ({
@@ -55,6 +56,8 @@ function VenueId({ accessToken }: VenueIdProps) {
     return <div>Loading...</div>;
   }
 
+  const isAccessToken = !!accessToken;
+
   return (
     <div>
       <S.singleVenue>
@@ -63,7 +66,7 @@ function VenueId({ accessToken }: VenueIdProps) {
           <div className='venue-details'>
             <h1>{venue.name}</h1>
             <p>{venue.description}</p>
-            <button onClick={handleBookNowClick}>Book Now</button>
+            {isAccessToken && <button onClick={handleBookNowClick}>Book Now</button>}
           </div>
         </div>
         <div className='info-wrap'>
