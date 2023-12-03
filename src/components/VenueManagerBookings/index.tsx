@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Venue, { Booking } from '../../types';
+import Venue from '../../types';
 import fetchVenueById from '../../services/venue';
 import BookingCalendar from '../BookingCalendar';
 

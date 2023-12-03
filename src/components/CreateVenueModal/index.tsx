@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import CustomModal from '../ChangeAvatarModal';
 import createVenue from '../../services/venues/create';
 import updateVenue from '../../services/venues/update';
-import deleteVenue from '../../services/venues/delete';
 import Venue, { ExtendedVenue } from '../../types';
 import * as storage from '../../storage/index';
 
@@ -88,14 +87,6 @@ const CreateVenueModal: React.FC<CreateVenueModalProps> = ({
     }));
   };
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      meta: { ...prevData.meta, [name]: checked },
-    }));
-  };
-
   const handleSubmit = () => {
     if (venue) {
       updateVenue(venue.id, formData, accessToken || '')
@@ -115,19 +106,6 @@ const CreateVenueModal: React.FC<CreateVenueModalProps> = ({
         })
         .catch((error) => {
           console.error('Error creating venue', error);
-        });
-    }
-  };
-
-  const handleDelete = () => {
-    if (onDelete && venue) {
-      deleteVenue(venue.id, accessToken || '')
-        .then(() => {
-          onDelete(venue.id);
-          onRequestClose();
-        })
-        .catch((error) => {
-          console.error('Error deleting venue', error);
         });
     }
   };

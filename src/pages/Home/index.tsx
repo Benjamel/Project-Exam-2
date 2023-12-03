@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Venue, { Booking } from '../../types';
+import Venue from '../../types';
 import fetchVenues from '../../services/venues';
 import Search from '../../components/Search';
 import * as S from '../../App.styles';

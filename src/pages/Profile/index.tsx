@@ -20,7 +20,6 @@ function Profile() {
   const user = storage.load('user') as { name: string } | undefined;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newAvatarUrl, setNewAvatarUrl] = useState('');
-  const [isCreateVenueModalOpen, setIsCreateVenueModalOpen] = useState(false);
   const [venues, setVenues] = useState<Venue[]>([]);
   const [isCreateOrUpdateModalOpen, setIsCreateOrUpdateModalOpen] = useState(false);
   const [selectedVenue, setSelectedVenue] = useState<Venue | null>(null);
@@ -77,10 +76,6 @@ function Profile() {
     });
   };
 
-  useEffect(() => {
-    console.log('Current state:', venues);
-  }, [venues]);
-
   const handleDelete = async (venueId: string) => {
     try {
       await deleteVenue(venueId, accessToken);
@@ -104,14 +99,6 @@ function Profile() {
           console.error('Error updating avatar', error);
         });
     }
-  };
-
-  const openCreateVenueModal = () => {
-    setIsCreateVenueModalOpen(true);
-  };
-
-  const closeCreateVenueModal = () => {
-    setIsCreateVenueModalOpen(false);
   };
 
   useEffect(() => {

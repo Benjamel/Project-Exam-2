@@ -26,8 +26,6 @@ const BookingForm: React.FC<BookingFormProps> = ({
     guests: 1,
   });
 
-  const [bookings, setBookings] = useState<Booking[]>([]);
-
   const handleDateChange = (date: Date, fieldName: string) => {
     setBookingData((prevData) => ({ ...prevData, [fieldName]: date }));
   };
@@ -53,8 +51,6 @@ const BookingForm: React.FC<BookingFormProps> = ({
         venueId,
         accessToken,
       });
-
-      setBookings((prevBookings: Booking[]) => [...prevBookings, newBooking]);
 
       onRequestClose();
       onBookingSubmit(newBooking);

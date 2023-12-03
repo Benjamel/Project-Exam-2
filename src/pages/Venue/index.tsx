@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import fetchVenueById from '../../services/venue';
-// import fetchBookings from '../../services/bookings';
-// import fetchVenues from '../../services/venues';
 import BookingForm from '../../components/BookingModal';
 import Venue, { Booking } from '../../types';
 import * as S from '../../App.styles';
