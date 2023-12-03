@@ -12,6 +12,13 @@ export default interface Venue {
   location: Location;
   owner: Owner;
   bookings: Booking[];
+  email?: string;
+  avatar?: string;
+}
+
+export interface ExtendedVenue extends Venue {
+  email?: string;
+  avatar?: string;
 }
 
 export interface Owner {
@@ -39,8 +46,8 @@ export interface Meta {
 
 export interface Booking {
   id: string;
-  dateFrom: string;
-  dateTo: string;
+  dateFrom: string | Date;
+  dateTo: string | Date;
   guests: number;
   created: string;
   updated: string;

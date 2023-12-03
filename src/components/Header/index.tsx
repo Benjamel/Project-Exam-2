@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Logo from '../../assets/icons/keys-svgrepo-com.svg';
 import * as storage from '../../storage/index';
 
@@ -6,11 +6,7 @@ interface User {
   name: string;
 }
 
-interface HeaderProps {
-  profileId?: string;
-}
-
-function Header({ profileId }: HeaderProps) {
+function Header() {
   const accessToken = storage.load('accessToken') as string | null;
   const user = storage.load('user') as User | null;
 
@@ -19,43 +15,39 @@ function Header({ profileId }: HeaderProps) {
     storage.remove('user');
   };
 
-  console.log('Profile ID (Header):', profileId);
-  console.log('User:', user);
-  console.log('AccessToken:', accessToken);
-
   return (
     <nav className='w-full fixed top-0 p-3 z-10 bg-242424'>
       <div className='container mx-auto flex justify-between items-center'>
         <div className='text-2xl font-semibold'>
-          <Link to='/' className='text-white flex items-center hover:text-white'>
+          <NavLink to='/' className='text-white flex items-center hover:text-white'>
             Holidaze
             <img src={Logo} alt={Logo} className='ml-1' />
-          </Link>
+          </NavLink>
         </div>
         <ul className='flex space-x-4'>
           <li>
-            <Link to='/' className='text-white hover:text-white'>
+            <NavLink to='/' className='text-white hover:text-white'>
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
             {accessToken && user && (
-              <Link to={`/profile/${user?.name}`} className='text-white hover:text-white'>
+              <NavLink to={`/profile/${user?.name}`} className='text-white hover:text-white'>
                 Profile
-              </Link>
+              </NavLink>
             )}
           </li>
           {accessToken && user ? (
             <li>
-              <Link to='/home' onClick={handleLogout} className='text-white hover:text-white'>
+              <NavLink to='/home' onClick={handleLogout} className='text-white hover:text-white'>
                 Logout
-              </Link>
+              </NavLink>
             </li>
           ) : (
             <li>
-              <Link to='/login' className='text-white hover:text-white'>
+              <NavLink to='/login' className='text-white hover:text-white'>
                 Login
-              </Link>
+              </NavLink>
             </li>
           )}
         </ul>
