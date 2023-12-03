@@ -72,7 +72,7 @@ function VenueId({ accessToken }: VenueIdProps) {
           <div className='info'>
             <h2>Info</h2>
             <p>Max Guests: {venue.maxGuests}</p>
-            <p>Price: {venue.price}</p>
+            <p>Price: ${venue.price}</p>
             <p>Rating: {venue.rating}</p>
             <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
             <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>

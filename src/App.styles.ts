@@ -90,7 +90,7 @@ export const singleVenue = styled.div`
   }
 
   .venue-image {
-    max-width: 400px;
+    max-width: 350px;
     object-fit: cover;
     border-radius: 10px;
   }
