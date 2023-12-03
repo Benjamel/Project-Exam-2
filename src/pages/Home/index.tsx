@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Venue from '../../types';
+import Venue, { Booking } from '../../types';
 import fetchVenues from '../../services/venues';
 import Search from '../../components/Search';
 import * as S from '../../App.styles';
@@ -36,14 +36,14 @@ function Home() {
         <h1 className='text-center mt-4'>Venues</h1>
         <Search searchQuery={searchQuery} onSearch={setSearchQuery} />
       </div>
-      <S.ProductCard>
+      <S.venueCard>
         {filteredVenues.map((venue) => (
           <Link to={`/venue/${venue.id}`} key={venue.id}>
             <img src={venue.media[0]} alt={venue.name} />
             <h2>{venue.name}</h2>
           </Link>
         ))}
-      </S.ProductCard>
+      </S.venueCard>
     </div>
   );
 }
