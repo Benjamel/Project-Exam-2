@@ -58,13 +58,13 @@ function VenueId({ accessToken }: VenueIdProps) {
   const isAccessToken = !!accessToken;
 
   return (
-    <div>
-      <S.singleVenue>
+    <S.singleVenue>
+      <div className='max-w-screen-s text-left mx-auto'>
         <div className='venue'>
           <img className='venue-image' src={venue.media[0]} alt={venue.name} />
           <div className='venue-details'>
-            <h1>{venue.name}</h1>
-            <p>{venue.description}</p>
+            <p>Venue Name: {venue.name}</p>
+            <p>Venue Description: {venue.description}</p>
             {isAccessToken && <button onClick={handleBookNowClick}>Book Now</button>}
           </div>
         </div>
@@ -108,8 +108,8 @@ function VenueId({ accessToken }: VenueIdProps) {
             <p>Email: {venue.owner.email}</p>
           </div>
         </div>
-      </S.singleVenue>
-    </div>
+      </div>
+    </S.singleVenue>
   );
 }
 
