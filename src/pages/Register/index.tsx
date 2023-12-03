@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { registerValidationSchema } from '../../Handlers/validation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerUser } from '../../services/auth/register';
+import * as S from '../../App.styles';
 
 function Register() {
   const {
@@ -22,27 +23,31 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Register</h1>
-      <div>
-        <input type='text' placeholder='Name' {...register('name')} />
-        <p>{errors.name?.message}</p>
+    <S.registerForm>
+      <div className='register-container'>
+        <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
+          <h1 className='mb-3 text-center'>Register</h1>
+          <div className='form-group'>
+            <input type='text' placeholder='Name' {...register('name')} />
+            <p className='error-message'>{errors.name?.message}</p>
+          </div>
+          <div className='form-group'>
+            <input type='text' placeholder='Email' {...register('email')} />
+            <p className='error-message'>{errors.email?.message}</p>
+          </div>
+          <div className='form-group'>
+            <input type='password' placeholder='Password' {...register('password')} />
+            <p className='error-message'>{errors.password?.message}</p>
+          </div>
+          <div className='button-group'>
+            <button type='submit'>Register</button>
+            <button className='back-button'>
+              <Link to='/login'>Go back</Link>
+            </button>
+          </div>
+        </form>
       </div>
-      <div>
-        <input type='text' placeholder='Email' {...register('email')} />
-        <p>{errors.email?.message}</p>
-      </div>
-      <div>
-        <input type='password' placeholder='Password' {...register('password')} />
-        <p>{errors.password?.message}</p>
-      </div>
-      <button>
-        <Link className='text-white hover:text-white' to='/login'>
-          Go back
-        </Link>
-      </button>
-      <button type='submit'>Register</button>
-    </form>
+    </S.registerForm>
   );
 }
 

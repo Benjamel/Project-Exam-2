@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginValidationSchema } from '../../Handlers/validation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../services/auth/login';
+import * as S from '../../App.styles';
 
 function Login() {
   const {
@@ -25,27 +26,29 @@ function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Login</h1>
-        <div>
-          <label htmlFor='email'></label>
-          <input type='email' placeholder='Email' {...register('email')} />
-          <p>{errors.email?.message}</p>
-        </div>
-        <div>
-          <label htmlFor='password'></label>
-          <input type='password' placeholder='Password' {...register('password')} />
-          <p>{errors.password?.message}</p>
-        </div>
-        <button type='submit'>Login</button>
-        <button>
-          <Link className='text-white hover:text-white' to='/register'>
-            Register
-          </Link>
-        </button>
-      </form>
-    </div>
+    <S.loginForm>
+      <div className='login-container'>
+        <form className='login-form' onSubmit={handleSubmit(onSubmit)}>
+          <h1 className='mb-4 text-center'>Login</h1>
+          <div className='form-group'>
+            <label htmlFor='email'>Email</label>
+            <input type='email' placeholder='Email' {...register('email')} />
+            <p className='error-message'>{errors.email?.message}</p>
+          </div>
+          <div className='form-group'>
+            <label htmlFor='password'>Password</label>
+            <input type='password' placeholder='Password' {...register('password')} />
+            <p className='error-message'>{errors.password?.message}</p>
+          </div>
+          <div className='button-group'>
+            <button type='submit'>Login</button>
+            <button className='register-link'>
+              <Link to='/register'>Register</Link>
+            </button>
+          </div>
+        </form>
+      </div>
+    </S.loginForm>
   );
 }
 

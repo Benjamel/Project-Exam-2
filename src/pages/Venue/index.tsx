@@ -55,34 +55,42 @@ function VenueId({ accessToken }: VenueIdProps) {
     return <div>Loading...</div>;
   }
 
+  const isAccessToken = !!accessToken;
+
   return (
     <div>
       <S.singleVenue>
         <div className='venue'>
-          <img src={venue.media[0]} alt={venue.name} />
-          <h1>{venue.name}</h1>
-          <p>{venue.description}</p>
-          <p>{venue.price}</p>
+          <img className='venue-image' src={venue.media[0]} alt={venue.name} />
+          <div className='venue-details'>
+            <h1>{venue.name}</h1>
+            <p>{venue.description}</p>
+            {isAccessToken && <button onClick={handleBookNowClick}>Book Now</button>}
+          </div>
         </div>
-        <div className='owner'>
-          <h2>Owner</h2>
-          <p>
-            <Link to={`/profile/${venue.owner.name}`}>Name: {venue.owner.name}</Link>
-          </p>
-          <p>Email: {venue.owner.email}</p>
-          <img src={venue.owner.avatar} alt={venue.owner.name} />
-        </div>
-        <div className='info'>
-          <h2>Info</h2>
-          <p>Max Guests: {venue.maxGuests}</p>
-          <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
-          <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
-          <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
-          <p>Pets: {venue.meta.pets ? 'Yes' : 'No'}</p>
+        <div className='info-wrap'>
+          <div className='info'>
+            <h2>Info</h2>
+            <p>Max Guests: {venue.maxGuests}</p>
+            <p>Price: {venue.price}</p>
+            <p>Rating: {venue.rating}</p>
+            <p>Wifi: {venue.meta.wifi ? 'Yes' : 'No'}</p>
+            <p>Parking: {venue.meta.parking ? 'Yes' : 'No'}</p>
+            <p>Breakfast: {venue.meta.breakfast ? 'Yes' : 'No'}</p>
+            <p>Pets: {venue.meta.pets ? 'Yes' : 'No'}</p>
+          </div>
+          <div className='location'>
+            <h2>Location</h2>
+            <p>Address: {venue.location.address}</p>
+            <p>City: {venue.location.city}</p>
+            <p>Zip: {venue.location.zip}</p>
+            <p>Country: {venue.location.country}</p>
+            <p>Continent: {venue.location.continent}</p>
+            <p>longitude: {venue.location.lat}</p>
+            <p>Latitude: {venue.location.lng}</p>
+          </div>
         </div>
         <BookingCalendar key={`${bookings.length}-${forceRerender}`} bookings={bookings} />
-
-        <button onClick={handleBookNowClick}>Book Now</button>
         <BookingForm
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
@@ -90,6 +98,16 @@ function VenueId({ accessToken }: VenueIdProps) {
           accessToken={accessToken}
           onBookingSubmit={handleBookingSubmit}
         />
+        <div className='owner mt-5'>
+          <img className='owner-avatar' src={venue.owner.avatar} alt={venue.owner.name} />
+          <div className='owner-details'>
+            <h2>Owner</h2>
+            <p className='font-bold'>
+              <Link to={`/profile/${venue.owner.name}`}>Name: {venue.owner.name}</Link>
+            </p>
+            <p>Email: {venue.owner.email}</p>
+          </div>
+        </div>
       </S.singleVenue>
     </div>
   );

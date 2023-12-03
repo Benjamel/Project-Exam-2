@@ -11,10 +11,10 @@ function Search({
   };
 
   return (
-    <div>
+    <div className='m-4'>
       <form>
         <input
-          className='p-1'
+          className='p-2 border rounded-md w-64 focus:outline-none focus:ring focus:border-blue-300'
           type='search'
           placeholder='Search'
           aria-label='Search'

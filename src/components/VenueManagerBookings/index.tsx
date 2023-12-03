@@ -25,7 +25,6 @@ const VenueBookings: React.FC<VenueBookingsProps> = ({ venueId, accessToken }) =
     <div>
       {venue && (
         <>
-          <h2>Bookings for Venue {venue.name}</h2>
           <BookingCalendar bookings={venue.bookings || []} />
         </>
       )}

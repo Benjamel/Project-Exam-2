@@ -138,63 +138,77 @@ function Profile() {
 
   return (
     <div>
-      <img src={profile.avatar} alt={profile?.name} />
-      <p>Name: {profile.name}</p>
-      <p>Email: {profile.email}</p>
-      {isProfileOwner && (
-        <div>
-          <button onClick={openModal}>Change Avatar</button>
-          <CustomModal isOpen={isModalOpen} onRequestClose={closeModal}>
-            <h2 className='mb-1'>Change Avatar</h2>
-            <input
-              type='text'
-              placeholder='New avatar URL'
-              value={newAvatarUrl}
-              onChange={(e) => setNewAvatarUrl(e.target.value)}
-              className='pl-1'
+      <S.profilePage>
+        <div className='profile'>
+          <img src={profile.avatar} alt={profile?.name} />
+          <div className='profile-info'>
+            <p>Name: {profile.name}</p>
+            <p>Email: {profile.email}</p>
+            {isProfileOwner && (
+              <div className='font-bold'>
+                <button onClick={openModal}>Change Avatar</button>
+                <CustomModal isOpen={isModalOpen} onRequestClose={closeModal}>
+                  <h2 className='mb-1'>Change Avatar</h2>
+                  <input
+                    type='text'
+                    placeholder='New avatar URL'
+                    value={newAvatarUrl}
+                    onChange={(e) => setNewAvatarUrl(e.target.value)}
+                    className='pl-1'
+                  />
+                  <div>
+                    <button onClick={handleAvatarChange}>Update</button>
+                  </div>
+                </CustomModal>
+              </div>
+            )}
+            <div className='font-bold'>
+              {isProfileOwner && (
+                <>
+                  <button onClick={() => openCreateOrUpdateModal()}>Create Venue</button>
+                  <p>
+                    Venue Manager:{' '}
+                    <VenueManagerToggle profileId={profileId} accessToken={accessToken} />
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+        <S.venueCard>
+          <div>
+            <h2 className='mt-5 mb-5'>My Venues</h2>
+            {venues.map((venue) => (
+              <div
+                key={venue.id}
+                onClick={() => handleVenueClick(venue)}
+                className='flex flex-col sm:flex-row'>
+                <div className='mb-5'>
+                  <p>Title: {venue.name}</p>
+                  <img className='mb-2 sm:mb-0' src={venue.media[0]} alt={venue.name} />
+                </div>
+                <div className='ml-0 sm:ml-4'>
+                  <VenueBookings venueId={venue.id} accessToken={accessToken} />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {isProfileOwner && (
+            <CreateVenueModal
+              isOpen={isCreateOrUpdateModalOpen}
+              onRequestClose={closeCreateOrUpdateModal}
+              venue={selectedVenue}
+              onDelete={handleDelete}
+              onUpdateVenues={updateVenues}
+              onVenueCreated={handleVenueCreated}
             />
-            <div>
-              <button onClick={handleAvatarChange}>Update</button>
-            </div>
-          </CustomModal>
-        </div>
-      )}
-      <div>
-        {isProfileOwner && (
-          <>
-            <button onClick={() => openCreateOrUpdateModal()}>Create Venue</button>
-            <p>
-              Venue Manager: <VenueManagerToggle profileId={profileId} accessToken={accessToken} />
-            </p>
-          </>
-        )}
-      </div>
-      <div>
-        <UpcomingBookings profileName={profile?.name ?? ''} accessToken={accessToken} />
-      </div>
-      <S.venueCard>
+          )}
+        </S.venueCard>
         <div>
-          <h1 className='mb-2'>Venues</h1>
-          {venues.map((venue) => (
-            <div key={venue.id} onClick={() => handleVenueClick(venue)}>
-              <p>{venue.name}</p>
-              <p>{venue.description}</p>
-              <img src={venue.media[0]} alt={venue.name} />
-              <VenueBookings venueId={venue.id} accessToken={accessToken} />
-            </div>
-          ))}
+          <UpcomingBookings profileName={profile?.name ?? ''} accessToken={accessToken} />
         </div>
-        {isProfileOwner && (
-          <CreateVenueModal
-            isOpen={isCreateOrUpdateModalOpen}
-            onRequestClose={closeCreateOrUpdateModal}
-            venue={selectedVenue}
-            onDelete={handleDelete}
-            onUpdateVenues={updateVenues}
-            onVenueCreated={handleVenueCreated}
-          />
-        )}
-      </S.venueCard>
+      </S.profilePage>
     </div>
   );
 }
