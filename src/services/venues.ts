@@ -1,13 +1,19 @@
 import { BASE_URL } from './constants';
 import Venue from '../types';
+import { authFetch } from './headers';
 
 const action: string = 'venues?_owner=true&_bookings=true';
 
-async function fetchVenues(): Promise<Venue[]> {
+async function fetchVenues(accessToken?: string): Promise<Venue[]> {
   try {
-    const response = await fetch(BASE_URL + action);
+    const response = await authFetch(BASE_URL + action, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
     if (!response.ok) {
-      throw new Error('Response didnt work properly');
+      throw new Error("Response didn't work properly");
     }
 
     const data: Venue[] = await response.json();
